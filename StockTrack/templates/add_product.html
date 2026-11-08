@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockTrack | Add New Product</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_product.css') }}">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <img src="{{ url_for('static', filename='css/images/stock.jpg') }}" alt="StockTrack Logo">
+            <span>StockTrack</span>
+        </div>
+
+        <nav class="menu">
+            <a href="/"><span>⌂</span> Dashboard</a>
+            <a href="/add-product" class="active"><span>＋</span> Add Product</a>
+            <a href="/inventory"><span>▣</span> View Inventory</a>
+            <a href="/search-product"><span>⌕</span> Search Product</a>
+            <a href="/update-stock"><span>↗</span> Update Stock</a>
+            <a href="/delete-product"><span>▤</span> Delete Product</a>
+            <a href="/low-stock"><span>▥</span> Low-Stock Report</a>
+            <a href="/restock-requests"><span>⇄</span> Restock Requests</a>
+        </nav>
+
+        <!-- SIDEBAR ADMIN PROFILE -->
+        <div class="sidebar-bottom">
+
+            <div class="admin-profile">
+                <div class="admin-icon">👤</div>
+
+                <div class="admin-info">
+                    <strong>Admin</strong>
+                    <small>Administrator</small>
+                </div>
+            </div>
+
+            <a href="/logout" class="logout-link" title="Logout">
+                ⇥
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- HEADER -->
+        <header class="header">
+
+            <div>
+                <h1>Add New Product</h1>
+                <p>Register a new product in your inventory</p>
+            </div>
+
+            <!-- UPPER-RIGHT ADMIN PROFILE -->
+            <div class="header-admin">
+
+                <button type="button" class="notification-btn" title="Notifications">
+                  
+                </button>
+
+                <div class="admin-dropdown">
+
+                    <div class="profile-icon">👤</div>
+
+                    <strong>Admin</strong>
+
+                    <span class="dropdown-arrow">⌄</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ADD PRODUCT FORM -->
+        <section class="table-box add-product-box">
+
+            <h2>Product Information</h2>
+
+            {% if error %}
+                <p class="form-error">{{ error }}</p>
+            {% endif %}
+
+            {% if success %}
+                <p class="form-success">{{ success }}</p>
+            {% endif %}
+
+            <form action="/add-product" method="POST" class="product-form">
+
+                <div class="form-group">
+                    <label for="product_id">Product ID *</label>
+                    <input
+                        type="text"
+                        id="product_id"
+                        name="product_id"
+                        placeholder="e.g. P006"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="product_name">Product Name *</label>
+                    <input
+                        type="text"
+                        id="product_name"
+                        name="product_name"
+                        placeholder="e.g. Wireless Mouse"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category *</label>
+                    <select id="category" name="category" required>
+                        <option value="" disabled selected>Select category</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Accessories">Accessories</option>
+                        <option value="Office Supplies">Office Supplies</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price *</label>
+                    <input
+                        type="number"
+                        id="price"
+                        name="price"
+                        placeholder="e.g. 499.00"
+                        min="0"
+                        step="0.01"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantity *</label>
+                    <input
+                        type="number"
+                        id="quantity"
+                        name="quantity"
+                        placeholder="e.g. 10"
+                        min="0"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea
+                        id="description"
+                        name="description"
+                        placeholder="Optional description..."></textarea>
+                </div>
+
+                <!-- FORM BUTTONS -->
+                <div class="form-actions">
+
+                    <a href="/inventory" class="cancel-button">
+                        Cancel
+                    </a>
+
+                    <button type="submit" class="add-button">
+                        Save Product
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

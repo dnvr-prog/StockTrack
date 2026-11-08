@@ -1,0 +1,183 @@
+
+/* ========================================
+   SEARCH PRODUCT PAGE
+======================================== */
+
+.table-box {
+    background: #ffffff;
+    padding: 20px;
+    border: 1px solid #e1e8ef;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(20, 45, 60, 0.04);
+    margin-top: 25px;
+}
+
+.table-box h2 {
+    font-size: 17px;
+    color: #263b4d;
+    margin-bottom: 15px;
+}
+
+/* SEARCH FORM */
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.search-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    height: 44px;
+    padding: 0 13px;
+    border: 1px solid #dce4eb;
+    border-radius: 7px;
+    background: #ffffff;
+    box-sizing: border-box;
+}
+
+.search-input-wrapper:focus-within {
+    border-color: #10a878;
+    box-shadow: 0 0 0 3px rgba(16, 168, 120, 0.10);
+}
+
+.search-icon {
+    color: #526477;
+    font-size: 19px;
+}
+
+.search-input-wrapper input {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 13px;
+    color: #344454;
+}
+
+.search-input-wrapper input::placeholder {
+    color: #9aa8b5;
+}
+
+.search-form button {
+    height: 44px;
+    min-width: 115px;
+    padding: 0 20px;
+    background: #10a878;
+    color: #ffffff;
+    border: none;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background: #0b8e65;
+}
+
+/* RESULTS TABLE */
+
+.results-title {
+    margin: 25px 0 12px;
+    font-size: 15px;
+    color: #263b4d;
+}
+
+.search-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 18px;
+}
+
+.search-table-wrapper table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: collapse;
+}
+
+.search-table-wrapper thead {
+    background: #f0f4f8;
+}
+
+.search-table-wrapper th {
+    padding: 13px 12px;
+    color: #344454;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.search-table-wrapper td {
+    padding: 12px;
+    border-bottom: 1px solid #edf1f5;
+    color: #526477;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.search-table-wrapper tbody tr:hover {
+    background: #f8fafc;
+}
+
+/* STOCK STATUS */
+
+.status-good,
+.status-low {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.status-good {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.status-low {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+/* RESULT COUNT */
+
+.results-count {
+    margin-top: 18px;
+    color: #64748b;
+    font-size: 12px;
+}
+
+/* EMPTY MESSAGE */
+
+.empty-message {
+    text-align: center;
+    padding: 22px !important;
+    color: #8492a0 !important;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+    .table-box {
+        padding: 15px;
+    }
+
+    .search-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-form button {
+        width: 100%;
+    }
+}

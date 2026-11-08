@@ -1,0 +1,207 @@
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 5px 25px;
+}
+
+.page-header h1 {
+    margin: 0 0 7px;
+    font-size: 27px;
+    color: #263b35;
+}
+
+.page-header p {
+    margin: 0;
+    color: #84918c;
+    font-size: 14px;
+}
+
+.admin-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: #34443e;
+}
+
+.admin-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #e2f5ed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.restock-container {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.04);
+}
+
+.section-heading h2,
+.pending-heading h2 {
+    margin: 0 0 7px;
+    color: #263b35;
+    font-size: 19px;
+}
+
+.section-heading p,
+.pending-heading p {
+    margin: 0;
+    color: #89958f;
+    font-size: 13px;
+}
+
+.restock-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    align-items: end;
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #45564f;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    height: 43px;
+    padding: 0 12px;
+    border: 1px solid #dce5e0;
+    border-radius: 7px;
+    outline: none;
+    font-size: 13px;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #10a878;
+}
+
+.add-request-btn,
+.process-btn {
+    height: 43px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 7px;
+    background: #10a878;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.add-request-btn:hover,
+.process-btn:hover {
+    background: #07875f;
+}
+
+.alert {
+    padding: 12px 15px;
+    border-radius: 7px;
+    margin-top: 18px;
+    font-size: 13px;
+}
+
+.alert.success {
+    background: #dff6e9;
+    color: #087f52;
+}
+
+.alert.error {
+    background: #ffe5e5;
+    color: #c0392b;
+}
+
+.pending-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.request-count {
+    background: #e2f5ed;
+    color: #07875f;
+    padding: 7px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #f5f8f6;
+    color: #52635b;
+    font-size: 12px;
+    text-align: left;
+    padding: 15px;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #edf1ee;
+    color: #52635b;
+    font-size: 13px;
+}
+
+.pending-badge {
+    background: #fff2d5;
+    color: #a66b00;
+    padding: 5px 11px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.empty-message {
+    text-align: center;
+    padding: 30px;
+    color: #929d97;
+}
+
+.process-btn {
+    margin-top: 20px;
+}
+
+.process-btn:disabled {
+    background: #aab8b1;
+    cursor: not-allowed;
+}
+
+@media (max-width: 850px) {
+    .restock-form {
+        grid-template-columns: 1fr;
+    }
+
+    .page-header {
+        gap: 15px;
+    }
+}

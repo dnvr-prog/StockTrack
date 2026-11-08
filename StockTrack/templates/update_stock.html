@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockTrack | Update Stock</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/update_stock.css') }}">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <img src="{{ url_for('static', filename='css/images/stock.jpg') }}" alt="StockTrack Logo">
+            <span>StockTrack</span>
+        </div>
+
+        <nav class="menu">
+            <a href="/"><span>⌂</span> Dashboard</a>
+            <a href="/add-product"><span>＋</span> Add Product</a>
+            <a href="/inventory"><span>▣</span> View Inventory</a>
+            <a href="/search-product"><span>⌕</span> Search Product</a>
+            <a href="/update-stock" class="active"><span>↗</span> Update Stock</a>
+            <a href="/delete-product"><span>▤</span> Delete Product</a>
+            <a href="/low-stock"><span>▥</span> Low-Stock Report</a>
+            <a href="/restock-requests"><span>⇄</span> Restock Requests</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="admin-profile">
+                <div class="admin-icon">👤</div>
+                <div class="admin-info">
+                    <strong>Admin</strong>
+                    <small>Administrator</small>
+                </div>
+            </div>
+
+            <a href="/logout" class="logout-link">⇥</a>
+        </div>
+
+    </aside>
+
+    <main class="main">
+
+        <header class="header">
+            <div>
+                <h1>Update Stock</h1>
+                <p>Change the quantity of an existing product</p>
+            </div>
+
+            <div class="header-admin">
+                <span class="profile-icon">👤</span>
+                <strong>Admin</strong>
+                <span>⌄</span>
+            </div>
+        </header>
+
+        <section class="table-box">
+
+            <h2>Stock Information</h2>
+
+            {% if message %}
+                <p class="success-message">{{ message }}</p>
+            {% endif %}
+
+            {% if error %}
+                <p class="error-message">{{ error }}</p>
+            {% endif %}
+
+            <form method="POST" action="/update-stock" class="update-form">
+
+                <div class="form-group">
+                    <label for="product_id">Product ID / Name *</label>
+
+                    <select name="product_id" id="product_id" required>
+                        <option value="">Select a product</option>
+
+                        {% for product in products %}
+                        <option
+                            value="{{ product.id }}"
+                            data-quantity="{{ product.quantity }}"
+                            {% if selected_product_id == product.id %}selected{% endif %}
+                        >
+                            {{ product.id }} - {{ product.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="current_stock">Current Stock *</label>
+
+                    <input
+                        type="number"
+                        id="current_stock"
+                        placeholder="Select a product first"
+                        readonly
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">New Quantity *</label>
+
+                    <input
+                        type="number"
+                        name="quantity"
+                        id="quantity"
+                        placeholder="Enter new quantity"
+                        min="0"
+                        required
+                    >
+                </div>
+
+                <div class="form-group remarks-group">
+                    <label for="remarks">Remarks (Optional)</label>
+
+                    <textarea
+                        name="remarks"
+                        id="remarks"
+                        placeholder="e.g. Restock from supplier..."
+                    ></textarea>
+                </div>
+
+                <div class="update-actions">
+                    <a href="/inventory" class="cancel-button">Cancel</a>
+
+                    <button type="submit" class="update-button">
+                        Update Stock
+                    </button>
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <script>
+        const productSelect = document.getElementById("product_id");
+        const currentStock = document.getElementById("current_stock");
+
+        function displayCurrentStock() {
+            const selectedOption =
+                productSelect.options[productSelect.selectedIndex];
+
+            const quantity = selectedOption.getAttribute("data-quantity");
+
+            currentStock.value = quantity !== null ? quantity : "";
+        }
+
+        productSelect.addEventListener("change", displayCurrentStock);
+
+        displayCurrentStock();
+    </script>
+
+</body>
+</html>

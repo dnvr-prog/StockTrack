@@ -1,0 +1,51 @@
+[
+    {
+        "id": "P001",
+        "name": "Laptop",
+        "category": "Electronics",
+        "quantity": 18,
+        "price": 50000.0
+    },
+    {
+        "id": "P002",
+        "name": "Mouse",
+        "category": "Accessories",
+        "quantity": 10,
+        "price": 1000.0
+    },
+    {
+        "id": "P003",
+        "name": "Keyboard",
+        "category": "Accessories",
+        "quantity": 8,
+        "price": 1500.0
+    },
+    {
+        "id": "P004",
+        "name": "Monitor",
+        "category": "Electronics",
+        "quantity": 12,
+        "price": 5500.0
+    },
+    {
+        "id": "P005",
+        "name": "Ballpen",
+        "category": "Others",
+        "quantity": 30,
+        "price": 50.0
+    },
+    {
+        "id": "P007",
+        "name": "Tablet",
+        "category": "Accessories",
+        "quantity": 15,
+        "price": 49000.0
+    },
+    {
+        "id": "P000",
+        "name": "book",
+        "category": "Others",
+        "quantity": 10,
+        "price": 50.0
+    }
+]

@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockTrack | Inventory</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/inventory.css') }}">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <img src="{{ url_for('static', filename='css/images/stock.jpg') }}" alt="StockTrack Logo">
+            <span>StockTrack</span>
+        </div>
+
+        <nav class="menu">
+            <a href="/"><span>⌂</span> Dashboard</a>
+            <a href="/add-product"><span>＋</span> Add Product</a>
+            <a href="/inventory" class="active"><span>▣</span> View Inventory</a>
+            <a href="/search-product"><span>⌕</span> Search Product</a>
+            <a href="/update-stock"><span>↗</span> Update Stock</a>
+            <a href="/delete-product"><span>▤</span> Delete Product</a>
+            <a href="/low-stock"><span>▥</span> Low-Stock Report</a>
+            <a href="/restock-requests"><span>⇄</span> Restock Requests</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="admin-profile">
+                <div class="admin-icon">👤</div>
+                <div class="admin-info">
+                    <strong>Admin</strong>
+                    <small>Administrator</small>
+                </div>
+            </div>
+
+            <a href="/logout" class="logout-link">⇥</a>
+        </div>
+
+    </aside>
+
+    <main class="main">
+
+        <header class="header">
+            <div>
+                <h1>Inventory List</h1>
+                <p>Manage and monitor all your products</p>
+            </div>
+
+            <div class="header-admin">
+                <span class="profile-icon">👤</span>
+                <strong>Admin</strong>
+                <span>⌄</span>
+            </div>
+        </header>
+
+        <section class="table-box">
+
+            <div class="inventory-heading">
+                <div>
+                    <h2>All Products</h2>
+                    <p>Total Products: {{ products|length }}</p>
+                </div>
+
+                <a href="/add-product" class="inventory-add-btn">
+                    + Add Product
+                </a>
+            </div>
+
+            <!-- SEARCH BAR -->
+            <form class="inventory-search" method="GET" action="/inventory">
+                <span>⌕</span>
+                <input
+                    type="text"
+                    name="keyword"
+                    placeholder="Search by ID or name..."
+                    value="{{ request.args.get('keyword', '') }}"
+                >
+            </form>
+
+            <!-- INVENTORY TABLE -->
+            <div class="inventory-table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for product in products %}
+                        <tr>
+                            <td>{{ product.id }}</td>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.category }}</td>
+                            <td>₱{{ "%.2f"|format(product.price) }}</td>
+                            <td>{{ product.quantity }}</td>
+
+                            <td>
+                                {% if product.quantity <= 5 %}
+                                    <span class="status-low">Low Stock</span>
+                                {% else %}
+                                    <span class="status-good">In Stock</span>
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                <div class="inventory-actions">
+                                    <a href="/search-product?keyword={{ product.id }}"
+                                       class="action-btn view-btn"
+                                       title="View">◉</a>
+
+                                    <a href="/update-stock?product_id={{ product.id }}"
+                                       class="action-btn edit-btn"
+                                       title="Edit">✎</a>
+
+                                    <a href="/delete-product?product_id={{ product.id }}"
+                                       class="action-btn delete-btn"
+                                       title="Delete">▣</a>
+                                </div>
+                            </td>
+                        </tr>
+
+                        {% else %}
+                        <tr>
+                            <td colspan="7" class="empty-message">
+                                No products available yet.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

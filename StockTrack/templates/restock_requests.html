@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restock Requests | StockTrack</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/restock_requests.css') }}">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='css/images/stock.jpg') }}" alt="StockTrack Logo">
+            <h2>StockTrack</h2>
+        </div>
+
+        <nav class="menu">
+            <a href="/"><span>⌂</span> Dashboard</a>
+            <a href="/add-product"><span>＋</span> Add Product</a>
+            <a href="/inventory"><span>▣</span> View Inventory</a>
+            <a href="/search-product"><span>⌕</span> Search Product</a>
+            <a href="/update-stock"><span>↗</span> Update Stock</a>
+            <a href="/delete-product"><span>▤</span> Delete Product</a>
+            <a href="/low-stock"><span>▥</span> Low-Stock Report</a>
+            <a href="/restock-requests" class="active"><span>⇄</span> Restock Requests</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="admin-profile">
+                <span>👤</span>
+                <div>
+                    <strong>Admin</strong>
+                    <small>Administrator</small>
+                </div>
+            </div>
+            <a href="/logout">Logout</a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <div class="page-header">
+            <div>
+                <h1>Restock Requests</h1>
+                <p>Manage and process pending inventory restock requests.</p>
+            </div>
+
+            <div class="admin-top">
+                <div class="admin-avatar">👤</div>
+                <span>Admin ⌄</span>
+            </div>
+        </div>
+
+        <!-- ADD REQUEST -->
+        <section class="restock-container">
+
+            <div class="section-heading">
+                <h2>Add Restock Request</h2>
+                <p>Submit a new request to replenish product stock.</p>
+            </div>
+
+            {% if message %}
+                <div class="alert success">{{ message }}</div>
+            {% endif %}
+
+            {% if error %}
+                <div class="alert error">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST" action="/restock-requests" class="restock-form">
+
+                <div class="form-group">
+                    <label for="product_id">Select Product</label>
+                    <select name="product_id" id="product_id" required>
+                        <option value="">Choose a product...</option>
+
+                        {% for product in products %}
+                        <option value="{{ product.id }}">
+                            {{ product.id }} - {{ product.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Requested Quantity</label>
+                    <input type="number" name="quantity" id="quantity"
+                           min="1" placeholder="Enter quantity" required>
+                </div>
+
+                <button type="submit" class="add-request-btn">
+                    + Add Request
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- PENDING REQUESTS -->
+        <section class="restock-container pending-container">
+
+            <div class="pending-heading">
+                <div>
+                    <h2>Pending Restock Requests</h2>
+                    <p>Requests are processed in First In, First Out (FIFO) order.</p>
+                </div>
+
+                <span class="request-count">
+                    {{ restock_requests|length }} Pending
+                </span>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Queue No.</th>
+                            <th>Product ID</th>
+                            <th>Requested Quantity</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for item in restock_requests %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ item.product_id }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td><span class="pending-badge">Pending</span></td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="4" class="empty-message">
+                                No pending restock requests.
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <form method="POST" action="/process-restock-request">
+                <button type="submit" class="process-btn"
+                        {% if not restock_requests %}disabled{% endif %}>
+                    Process Next Request →
+                </button>
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

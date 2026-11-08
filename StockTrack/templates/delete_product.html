@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Product | StockTrack</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/delete_product.css') }}">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <img src="{{ url_for('static', filename='css/images/stock.jpg') }}" alt="StockTrack Logo">
+            <span>StockTrack</span>
+        </div>
+
+        <nav class="menu">
+            <a href="/"><span>⌂</span> Dashboard</a>
+            <a href="/add-product"><span>＋</span> Add Product</a>
+            <a href="/inventory"><span>▣</span> View Inventory</a>
+            <a href="/search-product"><span>⌕</span> Search Product</a>
+            <a href="/update-stock"><span>↗</span> Update Stock</a>
+            <a href="/delete-product" class="active"><span>▤</span> Delete Product</a>
+            <a href="/low-stock"><span>▥</span> Low-Stock Report</a>
+            <a href="/restock-requests"><span>⇄</span> Restock Requests</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="admin-profile">
+                <div class="admin-icon">👤</div>
+                <div class="admin-info">
+                    <strong>Admin</strong>
+                    <small>Administrator</small>
+                </div>
+            </div>
+
+            <a href="/logout" class="logout-link">⇥</a>
+        </div>
+
+    </aside>
+
+    <main class="main">
+
+        <header class="header">
+            <div>
+                <h1>Delete Product</h1>
+                <p>Remove a product from your inventory</p>
+            </div>
+
+            <div class="header-admin">
+                <span class="profile-icon">👤</span>
+                <strong>Admin</strong>
+                <span>⌄</span>
+            </div>
+        </header>
+
+        <section class="delete-container">
+
+            <div class="delete-warning">
+                <div class="warning-icon">!</div>
+
+                <div class="warning-text">
+                    <strong>Are you sure you want to delete this product?</strong>
+                    <small>This action cannot be undone.</small>
+                </div>
+            </div>
+
+            {% if message %}
+                <div class="success-message">{{ message }}</div>
+            {% endif %}
+
+            {% if error %}
+                <div class="error-message">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST" action="/delete-product" class="delete-form"
+                  onsubmit="return confirm('Are you sure you want to permanently delete this product?');">
+
+                <label for="product_id">Select Product</label>
+
+              
+            <select name="product_id" id="product_id" required>
+                  <option value="">Choose a product...</option>
+
+                  {% for product in products %}
+                  <option
+                     value="{{ product.id }}"
+                     data-name="{{ product.name }}"
+                     data-category="{{ product.category }}"
+                     data-price="{{ product.price }}"
+                     data-quantity="{{ product.quantity }}"
+                     {% if selected_product_id == product.id %}selected{% endif %}
+                 >
+                   {{ product.id }} - {{ product.name }}
+                 </option>
+                    {% endfor %}
+            </select>
+
+
+                <div class="delete-product-card">
+                    <h3>Product Information</h3>
+
+                    <div class="delete-product-details">
+                        <div class="detail-item">
+                            <small>Product ID</small>
+                            <strong id="detail-id">—</strong>
+                        </div>
+
+                        <div class="detail-item">
+                            <small>Product Name</small>
+                            <strong id="detail-name">—</strong>
+                        </div>
+
+                        <div class="detail-item">
+                            <small>Category</small>
+                            <strong id="detail-category">—</strong>
+                        </div>
+
+                        <div class="detail-item">
+                            <small>Price</small>
+                            <strong id="detail-price">—</strong>
+                        </div>
+
+                        <div class="detail-item">
+                            <small>Stock</small>
+                            <strong id="detail-stock">—</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="delete-actions">
+                    <a href="/inventory" class="delete-cancel">Cancel</a>
+
+                    <button type="submit" class="delete-button">
+                        Delete Product
+                    </button>
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    
+<script>
+    const productSelect = document.getElementById("product_id");
+
+    function showProductDetails() {
+        const selectedOption =
+            productSelect.options[productSelect.selectedIndex];
+
+        const productId = selectedOption.value;
+
+        if (!productId) {
+            document.getElementById("detail-id").textContent = "—";
+            document.getElementById("detail-name").textContent = "—";
+            document.getElementById("detail-category").textContent = "—";
+            document.getElementById("detail-price").textContent = "—";
+            document.getElementById("detail-stock").textContent = "—";
+            return;
+        }
+
+        document.getElementById("detail-id").textContent = productId;
+        document.getElementById("detail-name").textContent =
+            selectedOption.dataset.name;
+
+        document.getElementById("detail-category").textContent =
+            selectedOption.dataset.category;
+
+        document.getElementById("detail-price").textContent =
+            "₱" + Number(selectedOption.dataset.price).toFixed(2);
+
+        document.getElementById("detail-stock").textContent =
+            selectedOption.dataset.quantity;
+    }
+
+    productSelect.addEventListener("change", showProductDetails);
+    showProductDetails();
+</script>
+
+
+</body>
+</html>

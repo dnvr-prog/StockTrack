@@ -1,0 +1,179 @@
+
+/* ========================================
+   UPDATE STOCK PAGE
+======================================== */
+
+.table-box {
+    background: #ffffff;
+    padding: 20px;
+    border: 1px solid #e1e8ef;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(20, 45, 60, 0.04);
+    margin-top: 25px;
+}
+
+.table-box h2 {
+    font-size: 17px;
+    color: #263b4d;
+    margin-bottom: 20px;
+}
+
+/* UPDATE FORM */
+
+.update-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 20px;
+    width: 100%;
+}
+
+.update-form .form-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.update-form label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #344454;
+    margin-bottom: 8px;
+}
+
+.update-form input,
+.update-form select,
+.update-form textarea {
+    width: 100%;
+    height: 42px;
+    padding: 10px 12px;
+    border: 1px solid #dce4eb;
+    border-radius: 7px;
+    outline: none;
+    font-family: inherit;
+    font-size: 12px;
+    color: #344454;
+    background: #ffffff;
+    box-sizing: border-box;
+}
+
+.update-form input:focus,
+.update-form select:focus,
+.update-form textarea:focus {
+    border-color: #10a878;
+    box-shadow: 0 0 0 3px rgba(16, 168, 120, 0.10);
+}
+
+.update-form input::placeholder,
+.update-form textarea::placeholder {
+    color: #9aa8b5;
+}
+
+.update-form input[readonly] {
+    background: #f5f7fa;
+    color: #64748b;
+    cursor: default;
+}
+
+.update-form textarea {
+    height: 75px;
+    resize: vertical;
+}
+
+/* REMARKS */
+
+.remarks-group {
+    grid-column: 1 / -1;
+}
+
+/* FORM BUTTONS */
+
+.update-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.cancel-button,
+.update-button {
+    min-width: 135px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.cancel-button {
+    background: #e9eef4;
+    color: #526477;
+    border: none;
+}
+
+.cancel-button:hover {
+    background: #dce4ec;
+}
+
+.update-button {
+    background: #10a878;
+    color: #ffffff;
+    border: none;
+    padding: 0 20px;
+}
+
+.update-button:hover {
+    background: #0b8e65;
+}
+
+/* MESSAGES */
+
+.success-message,
+.error-message {
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.success-message {
+    color: #15803d;
+    background: #dcfce7;
+}
+
+.error-message {
+    color: #b91c1c;
+    background: #fee2e2;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+    .update-form {
+        grid-template-columns: 1fr;
+    }
+
+    .remarks-group,
+    .update-actions {
+        grid-column: 1;
+    }
+
+    .update-actions {
+        flex-direction: column-reverse;
+    }
+
+    .cancel-button,
+    .update-button {
+        width: 100%;
+    }
+
+    .table-box {
+        padding: 16px;
+    }
+}

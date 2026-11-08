@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockTrack | Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 40px 5%;
+
+            background:
+                url("{{ url_for('static', filename='css/images/stocktrack-bg.jpg') }}");
+
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 588px;
+            background: #f9fbfa;
+            padding: 62px 82px;
+            border-radius: 17px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .login-card h1 {
+            color: #102f25;
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #7c8c87;
+            font-size: 17px;
+            margin-bottom: 35px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 9px;
+            font-weight: bold;
+            color: #243c33;
+            font-size: 15px;
+        }
+
+        .input-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-box svg {
+            position: absolute;
+            left: 15px;
+            width: 21px;
+            height: 21px;
+            color: #344c45;
+            pointer-events: none;
+        }
+
+        .input-box input {
+            width: 100%;
+            height: 57px;
+            padding: 15px 48px;
+            border: 1px solid #dce5df;
+            border-radius: 9px;
+            outline: none;
+            font-size: 16px;
+            background: #ffffff;
+            color: #263b32;
+        }
+
+        .input-box input:focus {
+            border-color: #079b6a;
+            box-shadow: 0 0 0 3px rgba(7, 155, 106, 0.08);
+        }
+
+        .password-input {
+            padding-right: 75px !important;
+        }
+
+        .show-password {
+           position: absolute;
+           right: 50px;
+           top: 50%;
+           transform: translateY(-50%);
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           width: 35px;
+           height: 35px;
+           background: none;
+           border: none;
+           padding: 5px;
+           color: #344c45;
+           cursor: pointer;
+           z-index: 10;
+           pointer-events: auto;
+        }
+
+        .show-password svg {
+            width: 22px;
+            height: 22px;
+            pointer-events: none;
+        }
+
+        .options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 8px 0 28px;
+            font-size: 14px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: #263b32;
+        }
+
+        .remember input {
+            width: 19px;
+            height: 19px;
+            accent-color: #079b6a;
+            cursor: pointer;
+        }
+
+        .forgot-password {
+            color: #079b6a;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .login-button {
+            width: 100%;
+            height: 56px;
+            border: none;
+            border-radius: 9px;
+            background: #079b6a;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .login-button:hover {
+            background: #087d58;
+        }
+
+        .error-message {
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 7px;
+            background: #fff0f0;
+            color: #c0392b;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 28px;
+            color: #82918b;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                justify-content: center;
+                padding: 20px;
+                background-size: cover;
+            }
+
+            .login-card {
+                padding: 40px 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-card">
+
+        <h1>Welcome Back!</h1>
+        <p class="subtitle">Sign in to your account</p>
+
+        {% if error %}
+        <div class="error-message">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <form action="/login" method="POST">
+
+            <div class="form-group">
+                <label>Username</label>
+
+                <div class="input-box">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5z"/>
+                    </svg>
+
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Username"
+                        required
+                    >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+
+                <div class="input-box">
+                    <svg viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2">
+                        <rect x="4" y="10" width="16" height="11" rx="2"/>
+                        <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+                        <circle cx="12" cy="15" r="1"/>
+                    </svg>
+
+                    <input
+                        type="password"
+                        id="password"
+                        class="password-input"
+                        name="password"
+                        placeholder="Password"
+                        required
+                    >
+
+                    <button
+                       type="button"
+                       class="show-password"
+                       onclick="togglePassword()"
+                       aria-label="Show password"
+                       id="toggleButton"
+                    >
+                      <svg id="eyeIcon" viewBox="0 0 24 24"
+                           fill="none" stroke="currentColor"
+                           stroke-width="2" stroke-linecap="round"
+                           stroke-linejoin="round">
+                           <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/>
+                           <circle cx="12" cy="12" r="3"/>
+                      </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="options">
+
+                <label class="remember">
+                    <input type="checkbox" name="remember" checked>
+                    Remember me
+                </label>
+
+                <a href="#" class="forgot-password">
+                    Forgot password?
+                </a>
+
+            </div>
+
+            <button type="submit" class="login-button">
+                Login
+            </button>
+
+        </form>
+
+        <div class="login-footer">
+            Don't have an account? Contact your administrator.
+            <br><br>
+            © 2026 StockTrack
+        </div>
+
+    </div>
+
+    <script>
+      function togglePassword() {
+         const password = document.getElementById("password");
+         const eyeIcon = document.getElementById("eyeIcon");
+         const button = document.getElementById("toggleButton");
+
+        if (password.type === "password") {
+             password.type = "text";
+
+             eyeIcon.innerHTML = `
+                 <path d="M3 3l18 18"/>
+                 <path d="M10.6 10.6a2 2 0 0 0 2.8 2.8"/>
+                 <path d="M9.9 5.2A10.5 10.5 0 0 1 12 5
+                 c6.4 0 10 7 10 7a15.5 15.5 0 0 1-4 4.8"/>
+                 <path d="M6.2 6.2C3.5 8 2 12 2 12
+                 s3.6 7 10 7a10 10 0 0 0 3-.5"/>
+             `;
+
+             button.setAttribute("aria-label", "Hide password");
+
+        } else {
+            password.type = "password";
+
+            eyeIcon.innerHTML = `
+            <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/>
+            <circle cx="12" cy="12" r="3"/>
+        `;
+
+        button.setAttribute("aria-label", "Show password");
+    }
+}
+</script>
+
+</body>
+</html>

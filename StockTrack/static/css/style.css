@@ -1,0 +1,544 @@
+
+/* GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background: #f4f7fb;
+    color: #24313d;
+}
+
+
+/* SIDEBAR */
+.sidebar {
+    width: 230px;
+    min-height: 100vh;
+    background: #092d32;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.logo {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.logo img {
+    width: 27px;
+    height: 27px;
+    object-fit: contain;
+}
+
+.logo span {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+
+/* SIDEBAR MENU */
+.menu {
+    padding: 18px 7px;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 13px;
+    margin-bottom: 5px;
+    border-radius: 7px;
+    color: #d5e1e2;
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+.menu a span {
+    width: 17px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.menu a:hover {
+    background: #16484a;
+    color: white;
+}
+
+.menu a.active {
+    background: #10a878;
+    color: white;
+    font-weight: bold;
+}
+
+
+/* SIDEBAR BOTTOM */
+.sidebar-bottom {
+    margin-top: auto;
+    padding: 15px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.admin-icon {
+    width: 29px;
+    height: 29px;
+    border-radius: 50%;
+    background: #dce9ed;
+    color: #24464b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-profile strong {
+    display: block;
+    font-size: 12px;
+}
+
+.admin-profile small {
+    display: block;
+    font-size: 10px;
+    color: #a9c0c1;
+    margin-top: 3px;
+}
+
+.logout-link {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+
+/* MAIN CONTENT */
+.main {
+    margin-left: 230px;
+    width: calc(100% - 230px);
+    padding: 27px 30px;
+}
+
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.header h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: #172b36;
+}
+
+.header p {
+    font-size: 13px;
+    color: #718096;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.notification {
+    font-size: 18px;
+    color: #233e49;
+}
+
+.header-admin {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.profile-icon {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #dce5eb;
+    color: #334d5b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* SUMMARY CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 13px;
+    margin-bottom: 17px;
+}
+
+.card {
+    background: white;
+    border: 1px solid #e1e9f1;
+    border-radius: 9px;
+    padding: 17px 15px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 78px;
+    box-shadow: 0 3px 10px rgba(30, 60, 80, 0.04);
+}
+
+.card p {
+    font-size: 12px;
+    color: #718096;
+    margin-bottom: 5px;
+}
+
+.card h2 {
+    font-size: 21px;
+    color: #172b36;
+}
+
+.card-icon {
+    width: 43px;
+    height: 43px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: white;
+}
+
+.green {
+    background: #24a879;
+}
+
+.blue {
+    background: #4388e8;
+}
+
+.purple {
+    background: #9560df;
+}
+
+
+/* RECENT PRODUCTS TABLE */
+.table-box {
+    background: white;
+    border: 1px solid #e1e9f1;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 3px 10px rgba(30, 60, 80, 0.04);
+}
+
+.table-box h2 {
+    font-size: 15px;
+    margin-bottom: 12px;
+    color: #243746;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+thead {
+    background: #f0f4f8;
+}
+
+th {
+    text-align: left;
+    padding: 10px 9px;
+    color: #354656;
+    font-weight: bold;
+}
+
+td {
+    padding: 10px 9px;
+    border-bottom: 1px solid #e7edf2;
+    color: #344454;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 800px) {
+    .sidebar {
+        width: 190px;
+    }
+
+    .main {
+        margin-left: 190px;
+        width: calc(100% - 190px);
+        padding: 20px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 550px) {
+    .sidebar {
+        width: 65px;
+    }
+
+    .logo {
+        justify-content: center;
+        padding: 0;
+    }
+
+    .logo span,
+    .menu a:not(.active) {
+        font-size: 0;
+    }
+
+    .menu a {
+        justify-content: center;
+        padding: 12px 5px;
+    }
+
+    .menu a span {
+        font-size: 18px;
+    }
+
+    .sidebar-bottom {
+        display: none;
+    }
+
+    .main {
+        margin-left: 65px;
+        width: calc(100% - 65px);
+        padding: 15px;
+    }
+
+    .header {
+        align-items: flex-start;
+    }
+}
+
+
+/* ===== PROFESSIONAL DASHBOARD IMPROVEMENTS ===== */
+
+/* PROFESSIONAL FONT */
+* {
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* WIDER SIDEBAR */
+.sidebar {
+    width: 260px;
+}
+
+.main {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+}
+
+/* LOGO */
+.logo {
+    padding: 0 22px;
+}
+
+.logo span {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+}
+
+/* SIDEBAR MENU */
+.menu {
+    padding: 20px 9px;
+}
+
+.menu a {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 14px;
+    margin-bottom: 6px;
+    border-radius: 8px;
+}
+
+.menu a.active {
+    font-weight: 600;
+}
+
+/* HEADER */
+.header h1 {
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.header p {
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+/* TOP RIGHT ADMIN PROFILE */
+.header-right {
+    gap: 22px;
+}
+
+.notification {
+    font-size: 19px;
+    cursor: pointer;
+}
+
+.header-admin {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    background: white;
+    border: 1px solid #e3eaf0;
+    border-radius: 25px;
+    padding: 6px 11px 6px 6px;
+    color: #263746;
+}
+
+.header-admin strong {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.profile-icon {
+    width: 30px;
+    height: 30px;
+    background: #e5edf1;
+    border: 1px solid #d6e1e7;
+    font-size: 13px;
+}
+
+/* BOTTOM LEFT ADMIN */
+.sidebar-bottom {
+    padding: 17px 16px;
+    min-height: 70px;
+}
+
+.admin-profile {
+    gap: 10px;
+}
+
+.admin-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+    border: 2px solid #d7e6e9;
+}
+
+.admin-profile strong {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.admin-profile small {
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+.logout-link {
+    font-size: 21px;
+    padding: 5px;
+    transition: 0.2s;
+}
+
+.logout-link:hover {
+    color: #10c995;
+}
+
+/* CARDS */
+.card p {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.card h2 {
+    font-size: 23px;
+    font-weight: 700;
+}
+
+/* TABLE */
+.table-box h2 {
+    font-size: 16px;
+    font-weight: 650;
+}
+
+table {
+    font-size: 13px;
+}
+
+th {
+    font-weight: 600;
+}
+
+td {
+    font-weight: 400;
+}
+
+/* RESPONSIVE SIDEBAR WIDTH */
+@media (max-width: 800px) {
+    .sidebar {
+        width: 190px;
+    }
+
+    .main {
+        margin-left: 190px;
+        width: calc(100% - 190px);
+    }
+}
+
+@media (max-width: 550px) {
+    .sidebar {
+        width: 65px;
+    }
+
+    .main {
+        margin-left: 65px;
+        width: calc(100% - 65px);
+    }
+}
+
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-badge.in-stock {
+    background: #d1f5e5;
+    color: #087f52;
+}
+
+.status-badge.low-stock {
+    background: #ffe7a3;
+    color: #946200;
+}
+
